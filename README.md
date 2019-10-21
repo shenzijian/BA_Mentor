@@ -28,4 +28,15 @@ Apply(**_lID,fID_**)
 Employ(**_fID,pID_**)
 
 
+## Prerequisite
+
+MS SQL Server Management Studio
+Tableau
+
+## Project Participants
+
+Shuxi Lian
+Jingyun Gu
+Miqi Wu
+Zijian Shen
 
