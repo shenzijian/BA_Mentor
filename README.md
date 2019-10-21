@@ -10,4 +10,5 @@ Mission objective: The system shall help both potential and current BA students 
 
 The database system's ER-Diagram:
 
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Image of ER-Diagram](https://github.com/shenzijian/BA_Mentor/blob/master/ER-Diagram.png)
+
