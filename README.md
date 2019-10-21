@@ -16,27 +16,27 @@ The database system's ER-Diagram:
 
 The database system's relational schema:
 
-Language (**lID**, lName, anaType, orientType, sourceType)
-Prerequisite(_**lID**_,**prerequisite**)
-Vendor(**vID**,vName,vLink)
-Tool (**tID**, tName, payType,IID,vID)
-Program(**pID**,pName,pRanking, schoolName,univName,region,pLink）
-Field(**fID**,fName) 
-Position(**_fID_,position**)
-Use(**_tID,fID_**)
-Apply(**_lID,fID_**)
-Employ(**_fID,pID_**)
+Language (**lID**, lName, anaType, orientType, sourceType)  
+Prerequisite(_**lID**_,**prerequisite**)  
+Vendor(**vID**,vName,vLink)  
+Tool (**tID**, tName, payType,IID,vID)  
+Program(**pID**,pName,pRanking, schoolName,univName,region,pLink)  
+Field(**fID**,fName)   
+Position(**_fID_,position**)  
+Use(**_tID,fID_**)  
+Apply(**_lID,fID_**)  
+Employ(**_fID,pID_**)  
 
 
 ## Prerequisite
 
-MS SQL Server Management Studio
+MS SQL Server Management Studio  
 Tableau
 
 ## Project Participants
 
-Shuxi Lian
-Jingyun Gu
-Miqi Wu
-Zijian Shen
+Shuxi Lian  
+Jingyun Gu  
+Miqi Wu  
+Zijian Shen  
 
