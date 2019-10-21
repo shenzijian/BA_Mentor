@@ -27,6 +27,15 @@ Use(**_tID,fID_**)
 Apply(**_lID,fID_**)  
 Employ(**_fID,pID_**)  
 
+## examples of business transaction:
+
+**What is the geographical distribution of top 50 BA programs in the U.S.?**  
+![Image of BT1](https://github.com/shenzijian/BA_Mentor/blob/master/business%20transaction%20by%20Tableau/BT1.png)
+
+
+
+
+
 
 ## Prerequisite
 
