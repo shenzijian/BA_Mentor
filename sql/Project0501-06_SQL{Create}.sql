@@ -1,0 +1,150 @@
+CREATE TABLE [BAMentor.Language] (
+  	lID CHAR (9) NOT NULL,
+  	IName VARCHAR(20) NOT NULL,
+  	anaType VARCHAR(20),
+  	orientType VARCHAR(20),
+  	sourceType VARCHAR(20),
+	CONSTRAINT pk_Language_lID PRIMARY KEY (lID)	 
+)
+
+CREATE TABLE [BAMentor.Prerequisite] (
+  	lID CHAR (9) NOT NULL,
+	prerequisite VARCHAR (20) NOT NULL,
+  	CONSTRAINT pk_prerquisite_lID_prerquisite PRIMARY KEY (lID, prerequisite) ,
+	CONSTRAINT fk_prerequisite_lID FOREIGN KEY(lID)
+        REFERENCES[BAMentor.Language](lID)
+  	  	ON DELETE CASCADE ON UPDATE CASCADE)
+
+CREATE TABLE [BAMentor.Vendor](
+  	tID CHAR(9) NOT NULL,
+  	vID CHAR(9) NOT NULL,
+  	vName VARCHAR(15),
+  	vLink VARCHAR(100),
+  	CONSTRAINT pk_Vendor_tID_vID PRIMARY KEY(tID,vID),
+  	CONSTRAINT fk_Vendor_tID FOREIGN KEY(tID)
+        		REFERENCES[BAMentor.Tool](tID)
+        		ON DELETE CASCADE ON UPDATE NO ACTION)
+ALTER TABLE [BAMentor.Vendor]
+ALTER COLUMN vName VARCHAR(50);
+
+CREATE TABLE [BAMentor.Tool] (
+  	tID CHAR (9) NOT NULL,
+  	tName VARCHAR (10),
+  	payType VARCHAR (10),
+	lID CHAR (9)  NOT NULL,
+  	CONSTRAINT pk_Tool_tID PRIMARY KEY (tID),
+  	CONSTRAINT fk_Language_lID FOREIGN KEY (lID)
+        		REFERENCES [BAMentor.Language](lID)
+        		ON DELETE NO ACTION ON UPDATE NO ACTION,
+	CONSTRAINT fk_Vendor_vID FOREIGN KEY (vID)
+				REFERENCES [BAMentor.Tool](vID)
+				ON DELETE CASCADE ON UPDATE NO ACTION
+				)
+ALTER TABLE [BAMentor.Tool]
+ALTER COLUMN tName VARCHAR(20);
+
+ALTER TABLE [BAMentor.Tool]
+ALTER COLUMN lID CHAR(9);
+
+CREATE TABLE[BAMentor.Program] (
+  	pID CHAR(9) NOT NULL,
+	pName VARCHAR(100),
+	schoolName  VARCHAR(20) NOT NULL,	
+	univName VARCHAR(100),
+	pLink VARCHAR(100),
+	region VARCHAR(20),
+	pRanking INTEGER,
+  	CONSTRAINT pk_Program_pID PRIMARY KEY (pID)
+)
+
+ALTER TABLE [BAMentor.Program]
+ALTER COLUMN region VARCHAR(255);
+
+
+
+
+CREATE TABLE [BAMentor.Field] (
+  	fID CHAR(9) NOT NULL,
+  	fName VARCHAR (10),
+	CONSTRAINT pk_BAMentor_Field_fID PRIMARY KEY (fID)
+)
+
+ALTER TABLE Program$
+ADD CONSTRAINT pk_Program$_ProgramID PRIMARY KEY (ProgramID)
+
+select * 
+from Program$
+where ProgramID is null;
+
+
+
+ALTER TABLE [BAMentor.Field]
+ALTER COLUMN fName VARCHAR(50);
+	
+
+CREATE TABLE [BAMentor.Position] (
+  	fID CHAR(9) NOT NULL,
+	position VARCHAR (20) NOT NULL,
+  	CONSTRAINT pk_position_fID_position PRIMARY KEY (fID, position) ,
+	CONSTRAINT fk_Field_fID FOREIGN KEY(fID)
+        	REFERENCES[BAMentor.Field](fID)
+  	  		ON DELETE CASCADE ON UPDATE CASCADE)
+
+ALTER TABLE [BAMentor.Position]
+ALTER COLUMN position VARCHAR(50) NOT NULL;
+
+
+
+
+
+
+--ALTER TABLE [BAMentor.Language]
+	--ADD CONSTRAINT fk_Language_tID FOREIGN KEY (tID)
+	--REFERENCES [BAMentor.Tool] (tID) 
+	--ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+/*CREATE TABLE [BAMentor.Adopt](
+  	tID CHAR(9) NOT NULL,
+  	pID CHAR(9) NOT NULL,
+  	CONSTRAINT pk_Adopt_tID_pID PRIMARY KEY(tID,pID),
+  	CONSTRAINT fk_Adopt_tID FOREIGN KEY(tID)
+        		REFERENCES[BAMentor.Tool](tID)
+        		ON DELETE NO ACTION ON UPDATE NO ACTION,
+  	CONSTRAINT fk_Adopt_pID FOREIGN KEY(pID)
+        		REFERENCES[BAMentor.Program](pID)
+        		ON DELETE NO ACTION ON UPDATE NO ACTION);*/
+
+CREATE TABLE [BAMentor.Use](
+  	tID CHAR(9) NOT NULL,
+  	fID CHAR(9) NOT NULL,
+  	CONSTRAINT pk_Use_tID_fID PRIMARY KEY(tID,fID),
+  	CONSTRAINT fk_Use_tID FOREIGN KEY(tID)
+        		REFERENCES[BAMentor.Tool](tID)
+        		ON DELETE NO ACTION ON UPDATE NO ACTION,
+  	CONSTRAINT fk_Adopt_fID FOREIGN KEY(fID)
+        		REFERENCES[BAMentor.Field](fID)
+        		ON DELETE NO ACTION ON UPDATE NO ACTION);
+
+CREATE TABLE [BAMentor.Apply](
+  	lID CHAR(9) NOT NULL,
+  	fID CHAR(9) NOT NULL,
+   	CONSTRAINT pk_Apply_lID_fID_pID PRIMARY KEY(lID, fID),
+  	CONSTRAINT fk_Apply_lID FOREIGN KEY(lID)
+        		REFERENCES[BAMentor.Language](lID)
+        		ON DELETE NO ACTION ON UPDATE NO ACTION,
+	CONSTRAINT fk_Apply_fID FOREIGN KEY(fID)
+        		REFERENCES[BAMentor.Field](fID)
+        		ON DELETE NO ACTION ON UPDATE NO ACTION
+)
+
+CREATE TABLE [BAMentor.Employ](
+  	fID CHAR(9) NOT NULL,
+  	pID CHAR(9) NOT NULL,
+  	CONSTRAINT pk_Employ_fID_pID PRIMARY KEY(fID,pID),
+  	CONSTRAINT fk_Employ_fID FOREIGN KEY(fID)
+        		REFERENCES[BAMentor.Field](fID)
+        		ON DELETE NO ACTION ON UPDATE NO ACTION,
+	CONSTRAINT fk_Employ_pID FOREIGN KEY(pID)
+				REFERENCES[BAMentor.Program](pID)
+				ON DELETE NO ACTION ON UPDATE NO ACTION)
